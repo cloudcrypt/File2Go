@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F2GClient", "F2GClient\F2GClient.csproj", "{698EC66A-F851-4FA5-B885-6A2C061A8050}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F2G", "F2G\F2G.csproj", "{7FD894AD-F232-4561-BCE0-2CE30D55CC19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{1C3C99E1-413C-438A-A15C-20C1693FEC30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7FD894AD-F232-4561-BCE0-2CE30D55CC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FD894AD-F232-4561-BCE0-2CE30D55CC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FD894AD-F232-4561-BCE0-2CE30D55CC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C3C99E1-413C-438A-A15C-20C1693FEC30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C3C99E1-413C-438A-A15C-20C1693FEC30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C3C99E1-413C-438A-A15C-20C1693FEC30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C3C99E1-413C-438A-A15C-20C1693FEC30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

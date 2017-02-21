@@ -23,7 +23,35 @@ namespace F2GClient
         public MainWindow()
         {
             InitializeComponent();
-            textBlock.Text = F2G.Class1.str;
+            //textBlock.Text = F2G.Class1.str;
+        }
+
+        private void LoginAttempt(object sender, RoutedEventArgs e)
+        {
+            if (Emailblock.Text == "Hello")
+            {
+                checkPassword();
+
+            }
+            else
+            {
+                InvalidLbl.Visibility = Visibility.Visible; 
+
+            }
+        }
+
+        private void checkPassword()
+        {
+            if (Passwordblock.Text == "World")
+            {
+                Console.Write("Login Success");
+
+            }
+            else
+            {
+                InvalidLbl.Visibility = Visibility.Visible;
+
+            }
         }
     }
 }
