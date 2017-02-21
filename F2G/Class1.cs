@@ -7,6 +7,6 @@ namespace F2G
 {
     public static class Class1
     {
-        public static string str = "Static string from Class1 in PCL";
+        public static string str = "Hello World!";
     }
 }
