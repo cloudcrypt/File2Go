@@ -99,12 +99,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\F2G\F2G.csproj">
-      <Project>{7fd894ad-f232-4561-bce0-2ce30d55cc19}</Project>
-      <Name>F2G</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="F2GIMG.png" />
   </ItemGroup>
   <ItemGroup>
