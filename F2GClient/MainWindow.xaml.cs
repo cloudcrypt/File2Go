@@ -23,7 +23,7 @@ namespace F2GClient
         public MainWindow()
         {
             InitializeComponent();
-            textBlock.Text = F2G.Class1.str;
+            textBlock.Text = Search4File.search("bulkfilechanger-x64.zip");
         }
     }
 }
