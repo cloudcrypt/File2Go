@@ -36,8 +36,6 @@ namespace F2GClient {
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        db.Requests.Remove(req);
-                        db.SaveChanges();
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }

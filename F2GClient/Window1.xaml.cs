@@ -53,21 +53,26 @@ namespace F2GClient
             
         }
 
-        private void fillLabels() {
+        private void fillLabels()
+        {
             DeviceName.Content = System.Net.Dns.GetHostName();
             IPAddress.Content = getMacAddress();
             Name.Content = user.fname + "  " +  user.lname;
             Email.Content = user.email;
         }
-        private void startListening() {
+        private void startListening()
+        {
             var bc = new BrushConverter();
-            ConnectionStatusLabel.Background = (Brush)bc.ConvertFrom("#FF89F084");
+            ConnectionStatusLabel.Background =(Brush)bc.ConvertFrom("#FF89F084");
             ConnectionStatusLabel.Content = "Connected";
-            try {
+            try
+            {
                 F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString());
                 listen.FileFound += Listen_FileFound;
                 listen.CheckQueue();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 var bc2 = new BrushConverter();
                 ConnectionStatusLabel.Background = (Brush)bc2.ConvertFrom("#FFF5EBEB");
                 ConnectionStatusLabel.Content = "Not Connected";
@@ -89,13 +94,11 @@ namespace F2GClient
                     db.Responses.Add(rsp);
                     db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
                     db.SaveChanges();
-                    startListening();
                     return;
                 }
                 rsp = new Response() { success = false, request = e.RequestData };
                 db.Responses.Add(rsp);
                 db.SaveChanges();
-                startListening();
                 return;
             }
         }
