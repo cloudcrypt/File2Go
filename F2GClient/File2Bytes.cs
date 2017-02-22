@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using F2G.Models;
 
 namespace F2GClient {
     public class File2Bytes {
@@ -8,7 +9,7 @@ namespace F2GClient {
             if (filePath.Length > 1) {
                 List<byte[]> file = new List<byte[]>();
                 filePath = filePath.Substring(0, filePath.Length - 1);
-                byte[] f = File.ReadAllBytes(filePath);
+                byte[] f = System.IO.File.ReadAllBytes(filePath);
                 int pieces = f.Length / segmentSize;
                 int count = 0;
                 for (count = 0; count < pieces; count++) {
@@ -25,10 +26,11 @@ namespace F2GClient {
             }
         }
 
+
         public static byte[] ConvertFileToBytes(string filePath) {
             if (filePath.Length > 1) {
                 try {
-                    return File.ReadAllBytes(filePath);
+                    return System.IO.File.ReadAllBytes(filePath);
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
                 }

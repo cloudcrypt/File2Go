@@ -67,8 +67,9 @@ namespace F2GClient
         private void openMain(User user)
         {
             Window1 win1 = new Window1(user);
-            win1.Show();
+ 
             this.Close();
+            win1.Show();
         }
 
         private void no_account(object sender, MouseButtonEventArgs e)

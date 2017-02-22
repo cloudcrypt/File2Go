@@ -34,8 +34,7 @@ namespace F2GClient {
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        //this.FileFound(this, new FileFoundEventArgs() { FileName = req.fileName });
-                        //OnFileFound(new FileFoundEventArgs { FileName = req.fileName });
+                        OnFileFound(new FileFoundEventArgs { RequestData = req });
                     }
                 }
             } catch (Exception e) {
@@ -43,30 +42,18 @@ namespace F2GClient {
             }
         }
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e) {
-            try {
-                using (F2GContext db = new F2GContext()) {
-                    Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
-                    if (req != null) {
-                        fileFound = true;
-                        //OnFileFound(new FileFoundEventArgs { FileName = req.fileName });
-                    }
-                }
-            } catch (Exception err) {
-                Console.WriteLine(err.Message);
-            }
-        }
+      
         public class FileFoundEventArgs : EventArgs {
-            public string FileName { get; set; }
+            public Request RequestData { get; set; }
         }
 
         public delegate void FileFoundEventHandler(FileFoundEventArgs e);
 
-        //protected virtual void OnFileFound(EventArgs e) {
-        //    EventHandler handler = FileFound;
-        //    if (handler != null) {
-        //        handler(this, e);
-        //    }
-        //}
+        protected virtual void OnFileFound(EventArgs e) {
+            EventHandler handler = FileFound;
+            if (handler != null) {
+                handler(this, e);
+            }
+        }
     }
 }

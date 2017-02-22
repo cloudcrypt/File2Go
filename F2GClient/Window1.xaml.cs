@@ -46,12 +46,11 @@ namespace F2GClient
 
             fillLabels();
 
-            
-
+            startListening();
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e) {
-            startListening();
+            
         }
 
         private void fillLabels()
