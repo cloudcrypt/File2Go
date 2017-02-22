@@ -28,5 +28,25 @@ namespace F2GWeb.Controllers
             ViewData["Files"] = _db.Files.Where(f => f.response.request.User.email == user.email).ToList();
             return View();
         }
+
+        public IActionResult View(int fileID)
+        {
+            return Content("Hello from view");
+        }
+
+        public IActionResult Download(int fileID)
+        {
+            return Content("Hello from download");
+        }
+
+        public IActionResult Email(int fileID)
+        {
+            return Content("Hello from email");
+        }
+
+        private void byteArrayToFile(byte[] bytes)
+        {
+
+        }
     }
 }

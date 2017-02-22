@@ -8,42 +8,43 @@ using System.ComponentModel;
 using System.Threading;
 
 namespace F2GClient {
-    class F2GDBListner {
+    public class F2GDBListner {
         volatile bool fileFound = false;
         private string ipAddr;
         private BackgroundWorker bw;
         public event EventHandler FileFound;
 
-        F2GDBListner (string ip) {
+
+        public F2GDBListner (string ip) {
             ipAddr = ip;
             bw = new BackgroundWorker();
             bw.WorkerSupportsCancellation = true;
-        }
 
+        }
         public void CheckQueue() {
             while (!fileFound) {
-                if (!bw.IsBusy) {
-                    bw.DoWork += bw_DoWork;
-                    bw.RunWorkerAsync();
-                }
+                var t = Task.Run(() => checkDB());
+                t.Wait();
             }
         }
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e) {
+        private void checkDB() {
             try {
                 using (F2GContext db = new F2GContext()) {
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        OnFileFound(new FileFoundEventArgs { FileName = req.fileName });
+                        OnFileFound(new FileFoundEventArgs { RequestData = req });
                     }
                 }
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
             }
         }
+
+      
         public class FileFoundEventArgs : EventArgs {
-            public string FileName { get; set; }
+            public Request RequestData { get; set; }
         }
 
         public delegate void FileFoundEventHandler(FileFoundEventArgs e);
