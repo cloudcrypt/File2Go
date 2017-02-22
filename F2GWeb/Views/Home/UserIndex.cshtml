@@ -8,7 +8,7 @@
 
 <h1>Welcome back, @user.fname!</h1>
 
-<form asp-controller="Home" asp-action="Process" method="post">
+<form asp-controller="Home" asp-action="Index" method="post">
     <div class="form-group">
         <label asp-for="filename" class="control-label"></label>
         <div>
@@ -36,8 +36,8 @@
         @foreach (Client c in clients)
         {
             <tr>
-                <td><span class="glyphicon glyphicon-home"></span>  @c.name</td>
-                <td><span class="glyphicon glyphicon-globe"></span>  @c.ip</td>
+                <td><span><i class="material-icons">devices</i></span>@c.name</td>
+                <td><span class="glyphicon glyphicon-globe"></span>@c.ip</td>
             </tr>
         }
     </tbody>

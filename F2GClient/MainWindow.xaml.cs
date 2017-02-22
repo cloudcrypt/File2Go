@@ -27,7 +27,6 @@ namespace F2GClient
         public LoginWindow()
         {
             InitializeComponent();
-            //textBlock.Text = F2G.Class1.str;
         }
 
         private void LoginAttempt(object sender, RoutedEventArgs e)
@@ -37,14 +36,16 @@ namespace F2GClient
             using (F2GContext db = new F2GContext())
             {
                 User user = db.Users.FirstOrDefault(u => u.email == Emailblock.Text.Trim());
-                if (user == null) { Console.WriteLine("User does not exist!"); return; }
+                if (user == null) { status.Content  = ("User does not exist!"); return; }
                 if (user.hash == getHash(Passwordblock.Password.Trim()))
                 {
-                    Console.WriteLine("user variable is now authenticated user!");
-                    identifyClient(user);
+                    /// Gained Access to Account // 
+                    //status.Content = ("user variable is now authenticated user!");
+                    openMain(user);
+                    //identifyClient(user);
                     return;
                 }
-                Console.WriteLine("incorrect username or password!");
+                status.Content = ("incorrect username or password!");
             }
         }
 
@@ -72,13 +73,11 @@ namespace F2GClient
         }
 
 
-        private void openMain()
+        private void openMain(User user)
         {
-            Window1 win1 = new Window1();
+            Window1 win1 = new Window1(user);
             win1.Show();
             this.Close();
-
-
         }
 
         private void no_account(object sender, MouseButtonEventArgs e)
@@ -96,6 +95,14 @@ namespace F2GClient
         {
             var bc = new BrushConverter();
             dhana.Foreground = (Brush)bc.ConvertFrom("#FFA20F0F");
+        }
+
+        private void enterEverything(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                LoginAttempt(sender, e);
+            }
         }
     }
 }
