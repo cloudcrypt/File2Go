@@ -28,6 +28,12 @@ namespace F2GWeb.Models
             created = DateTime.Now;
         }
 
+        public User(LoginViewModel vm)
+        {
+            email = vm.Email;
+            hash = getHash(vm.Password);
+        }
+
         private static string getHash(string pswd)
         {
             MD5 md5 = MD5.Create();
