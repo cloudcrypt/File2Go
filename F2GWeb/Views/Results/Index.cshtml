@@ -36,3 +36,12 @@ else
     <br />
     <a style="margin-top: 15px" asp-controller="Home" asp-action="Index" role="button" class="btn btn-primary btn-lg">Return</a>
 }
+
+@section Scripts {
+    <script type="text/javascript">
+        window.onbeforeunload = function () {
+            // peform ajax here
+            return "deleting all files!";
+        }
+    </script>
+}
