@@ -94,11 +94,13 @@ namespace F2GClient
                     db.Responses.Add(rsp);
                     db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
                     db.SaveChanges();
+                    startListening();
                     return;
                 }
                 rsp = new Response() { success = false, request = e.RequestData };
                 db.Responses.Add(rsp);
                 db.SaveChanges();
+                startListening();
                 return;
             }
         }
