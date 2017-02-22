@@ -28,5 +28,18 @@ namespace F2GWeb.Controllers
             User user = await _auth.getUserAsync();
             return _db.Responses.Where(r => r.request.User.email == user.email).Count();
         }
+
+        [HttpGet("api/files/delete")]
+        public async Task<bool> DeleteFiles()
+        {
+            User user = await _auth.getUserAsync();
+            List<File> files = _db.Files.Where(f => f.response.request.User.email == user.email).ToList();
+            foreach (File f in files)
+            {
+                _db.Files.Remove(f);
+            }
+            _db.SaveChanges();
+            return true;
+        }
     }
 }
