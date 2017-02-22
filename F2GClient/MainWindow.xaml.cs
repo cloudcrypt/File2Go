@@ -16,12 +16,11 @@ using System.Windows.Shapes;
 namespace F2GClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
-        
-        public MainWindow()
+        public LoginWindow()
         {
             InitializeComponent();
             //textBlock.Text = F2G.Class1.str;
@@ -29,7 +28,9 @@ namespace F2GClient
 
         private void LoginAttempt(object sender, RoutedEventArgs e)
         {
-            if (Emailblock.Text == "Hello")
+            openMain();
+           /*string input = Emailblock.Text.Trim();
+           if (input == "Hello")
             {
                 checkPassword();
 
@@ -38,21 +39,36 @@ namespace F2GClient
             {
                 InvalidLbl.Visibility = Visibility.Visible; 
 
-            }
+            }*/
         }
 
         private void checkPassword()
         {
-            if (Passwordblock.Text == "World")
+            String input = Passwordblock.Password.Trim();
+           /*if (input == "World")
             {
                 Console.Write("Login Success");
-
+                openMain();
             }
             else
             {
                 InvalidLbl.Visibility = Visibility.Visible;
 
-            }
+            }*/
+        }
+
+        private void openMain()
+        {
+            Window1 win1 = new Window1();
+            win1.Show();
+            this.Close();
+
+
+        }
+
+        private void no_account(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
