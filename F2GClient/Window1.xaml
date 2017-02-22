@@ -1,0 +1,107 @@
+﻿<Window x:Class="F2GClient.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:F2GClient"
+        mc:Ignorable="d"
+         Title="File2Go" Height="600" MaxHeight="600" MinHeight="600" Width="600" MaxWidth="600" MinWidth="600">
+    <Grid Background="#FFABE2E8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label x:Name="ConnectionStatusLabel" Content="Not Connected" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="140" FontSize="15" Foreground="Red" Background="#FFF5EBEB"/>
+            <Label x:Name="StatusLbl" Content="Status:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1"  Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" Height="30" Background="White" Width="60"  />
+
+        </Grid>
+        <Label x:Name="Status" Grid.ColumnSpan="2" Content="" Grid.Column="1" Height="30" Grid.Row="7" Width="392" Background="White"/>
+        <Rectangle Fill="#FF0101E6" HorizontalAlignment="Left" Height="135" Grid.Row="6" Stroke="Black" VerticalAlignment="Top" Width="592" Grid.ColumnSpan="3"/>
+        <Button x:Name="LogoutBtn" Content="Logout" Grid.Column="1"  Grid.Row="4" VerticalAlignment="Bottom" FontSize="20" Click="logout" VerticalContentAlignment="Top"/>
+        <Label x:Name="GetLogLbl" Content="Get Log File" Grid.Column="2" HorizontalAlignment="right" Grid.Row="5" VerticalAlignment="Top" Width="90" Foreground="#FF1CBD6C" Height="30"/>
+
+
+        <Grid Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="204" Margin="0,-2,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="592">
+            <Label x:Name="File" Content="File" HorizontalAlignment="Left" Height="146" Margin="16,14,0,0" VerticalAlignment="Top" Width="178" FontSize="100" RenderTransformOrigin="0.5,0.5" Foreground="Black">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-17.526"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+
+            <Label x:Name="goLbl" Content="GO" HorizontalAlignment="Left" Margin="404,24,0,0" VerticalAlignment="Top" Height="146" Width="184" FontSize="100" Foreground="Black" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="21.038"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Image x:Name="F2GIMG_png" Source="F2GIMG.png" Stretch="Fill" Margin="208,15,200,27"/>
+            <Label x:Name="label" Content="2" HorizontalAlignment="Left" Margin="229,-21,0,0" VerticalAlignment="Top" Height="154" Width="152" FontSize="130" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+
+
+
+        </Grid>
+
+        <Grid Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="231" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Top" Width="592" Margin="0,89,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Label x:Name="NameLbl" Content="Name:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="86" FontSize="25" Grid.Column="1" Grid.Row="1"/>
+            <Label x:Name="EmailLbl" Content="Email:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="86" FontSize="25" Grid.Column="1" Grid.Row="2"/>
+            <Label x:Name="DeviceNameLbl" Content="Device Name:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="171" FontSize="25" Grid.Column="1" Grid.Row="3"/>
+            <Label x:Name="IpLbl" Content="IP address:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="171" FontSize="25" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"/>
+
+            <Label x:Name="Name" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+            <Label x:Name="Email" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+            <Label x:Name="DeviceName" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+            <Label x:Name="IPAddress" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="374" FontSize="25" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Margin="138,0,0,0" Grid.RowSpan="2"/>
+
+
+        </Grid>
+
+
+    </Grid>
+</Window>
