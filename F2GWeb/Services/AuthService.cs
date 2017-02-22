@@ -55,10 +55,11 @@ namespace F2GWeb.Services
         {
             AuthenticateInfo authInfo = await _ctxAccessor.HttpContext.Authentication.GetAuthenticateInfoAsync("CookieMiddlewareInstance");
             if (authInfo.Principal == null || !authInfo.Principal.Identity.IsAuthenticated) { return null; }
-            string fname = authInfo.Principal.FindFirst("fname").Value;
-            string lname = authInfo.Principal.FindFirst("lname").Value;
+            //string fname = authInfo.Principal.FindFirst("fname").Value;
+            //string lname = authInfo.Principal.FindFirst("lname").Value;
             string email = authInfo.Principal.FindFirst("email").Value;
-            return new User() { fname = fname, lname = lname, email = email };
+            //return new User() { fname = fname, lname = lname, email = email };
+            return _db.Users.FirstOrDefault(u => u.email == email);
         }
     }
 }

@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Processing";
+    //int neededResponses = (int)ViewData["neededResponses"];
+}
+
+<h1>Processing...</h1>
+
+<div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Searching for file...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var needed = 3;
+
+        window.onload = function () {
+            $("#progress").modal('show');
+            poll();
+        }
+
+        poll = function () {
+            $.ajax({
+                type: "GET",
+                url: "/api/responses",
+                cache: false,
+                timeout: 2000,
+                success: function (response) {
+                    if (response == needed) {
+                        window.location("/About");
+                    } else {
+                        setTimeout(poll, 500);
+                    }
+                }
+            });
+        }
+    </script>
+}
