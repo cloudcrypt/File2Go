@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "F2G/1.0.0": {
+      "type": "project",
+      "framework": ".NETStandard,Version=v1.3",
+      "compile": {
+        "bin/Debug/F2G.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/F2G.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/F2G.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

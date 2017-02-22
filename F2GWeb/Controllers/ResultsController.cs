@@ -22,7 +22,11 @@ namespace F2GWeb.Controllers
             _auth = auth;
         }
 
-
-
+        public async Task<IActionResult> Index()
+        {
+            User user = await _auth.getUserAsync();
+            ViewData["Files"] = _db.Files.Where(f => f.response.request.User.email == user.email).ToList();
+            return View();
+        }
     }
 }
