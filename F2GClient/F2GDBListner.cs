@@ -41,6 +41,7 @@ namespace F2GClient {
                 Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                 if (req != null) {
                     fileToBeFound = req.fileName;
+                    OnFileFound(new FileFoundEventArgs { FileName = fileToBeFound });
                 }
             }
         }
