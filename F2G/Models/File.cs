@@ -12,6 +12,6 @@ namespace F2G.Models
         public string name { get; set; }
         public byte[] contents { get; set; }
         public DateTime uploaded { get; set; }
-        public User user { get; set; }
+        public Response response { get; set; }
     }
 }
