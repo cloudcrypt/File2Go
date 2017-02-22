@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using F2G;
 using F2G.Models;
+using System.Threading;
 
 namespace F2GClient
 {
@@ -32,7 +33,7 @@ namespace F2GClient
 
 
             System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
-            icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
+            //icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
             icon.Visible = true;
             icon.DoubleClick += new EventHandler(icon_click);
             icon.ContextMenu = new System.Windows.Forms.ContextMenu();
@@ -43,9 +44,14 @@ namespace F2GClient
             this.user = user;
             identifyClient(user);
 
-            startListening();
-
             fillLabels();
+
+            
+
+        }
+
+        private void OnWindowLoaded(object sender, RoutedEventArgs e) {
+            startListening();
         }
 
         private void fillLabels()
@@ -97,9 +103,9 @@ namespace F2GClient
                 }
                 catch (Exception e)
                 {
-                    Status.Content = "Something Went Wrong adjusting DataBase";
-                    removeClient();
-                    identifyClient(user);
+                    //Status.Content = "Something Went Wrong adjusting DataBase";
+                    //removeClient();
+                    //identifyClient(user);
                 }
             }
         }
