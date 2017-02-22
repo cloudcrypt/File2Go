@@ -62,8 +62,8 @@ namespace F2GClient
             ConnectionStatusLabel.Content = "Connected";
             try
             {
-                
-
+                F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString());
+                listen.CheckQueue();
             }
             catch (Exception e)
             {
