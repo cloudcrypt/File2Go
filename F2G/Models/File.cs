@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F2GWeb.Models
+namespace F2G.Models
 {
     public class File
     {

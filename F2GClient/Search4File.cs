@@ -29,7 +29,9 @@ namespace F2GClient {
                                     dir.Contains("\\$RECYCLE.BIN") ||
                                     dir.Contains("\\$Recycle.Bin") ||
                                     dir.Contains("\\System Volume Information") ||
-                                    dir.Contains("\\Recovery"));
+                                    dir.Contains("\\Recovery") ||
+                                    dir.Contains("\\Documents and Settings") ||
+                                    dir.Contains("\\AppData"));
                     if (ignore) {
                         searchDirectory(dir); // search sub directories
                     }      
@@ -39,7 +41,7 @@ namespace F2GClient {
             }
         }
 
-        public static string search(string fn) {
+        public static string Search(string fn) {
             filePaths = new List<string>();
             fileName = fn;
 

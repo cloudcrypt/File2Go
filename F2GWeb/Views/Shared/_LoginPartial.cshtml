@@ -1,15 +1,17 @@
-﻿@*@using Microsoft.AspNetCore.Identity
-@using F2GWeb.Models*@
+﻿@using F2GWeb.Services
+@using F2G.Models
+
+@inject IAuthService auth
 
 @*@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager*@
 
-@if (false)
+@if (auth.user != null)
 {
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @*<a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>*@
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @auth.user.fname!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>

@@ -170,13 +170,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="F2GContext.cs" />
-    <Compile Include="FileToBytes.cs" />
+    <Compile Include="F2GDBListner.cs" />
+    <Compile Include="File2Bytes.cs" />
     <Compile Include="Migrations\20170222003705_Migration1.cs" />
     <Compile Include="Migrations\20170222003705_Migration1.designer.cs">
       <DependentUpon>20170222003705_Migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\F2GContextModelSnapshot.cs" />
     <Compile Include="Search4File.cs" />
+    <Compile Include="Send2Email.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
