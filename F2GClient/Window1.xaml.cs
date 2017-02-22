@@ -91,20 +91,22 @@ namespace F2GClient
             byte[] file = File2Bytes.ConvertFileToBytes(path);
             using (F2GContext db = new F2GContext())
             {
+                Request rsq = e.RequestData;
                 Response rsp;
                 if (file != null)
                 {
-                    Request rsq = e.RequestData;
                     db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                    rsp = new Response() { success = true, request = rsq };
+                    rsp = new Response() { success = true, User = rsq.User, client = rsq.client };
                     db.Responses.Add(rsp);
                     db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
+                    db.Requests.Remove(rsq);
                     db.SaveChanges();
                     startListening();
                     return;
                 }
-                rsp = new Response() { success = false, request = e.RequestData };
+                rsp = new Response() { success = false, User = rsq.User, client = rsq.client };
                 db.Responses.Add(rsp);
+                db.Requests.Remove(rsq);
                 db.SaveChanges();
                 startListening();
                 return;
@@ -137,6 +139,7 @@ namespace F2GClient
                 catch (Exception e)
                 {
                     Status.Content = "Something Went Wrong adjusting DataBase";
+                    removeClient();
                     removeClient();
                     identifyClient(user);
                 }

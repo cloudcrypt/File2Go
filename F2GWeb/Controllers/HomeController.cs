@@ -40,12 +40,12 @@ namespace F2GWeb.Controllers
             User user = await _auth.getUserAsync();
             if (ModelState.IsValid)
             {
-                List<File> files = _db.Files.Where(f => f.response.request.User.email == user.email).ToList();
+                List<File> files = _db.Files.Where(f => f.response.User.email == user.email).ToList();
                 foreach (File f in files)
                 {
                     _db.Files.Remove(f);
                 }
-                List<Response> responses = _db.Responses.Where(r => r.request.client.User.email == user.email).ToList();
+                List<Response> responses = _db.Responses.Where(r => r.client.User.email == user.email).ToList();
                 foreach (Response r in responses)
                 {
                     _db.Responses.Remove(r);

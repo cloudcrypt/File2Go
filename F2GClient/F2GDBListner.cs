@@ -47,9 +47,7 @@ namespace F2GClient {
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        window1.updateStatus("Connection request recieved. Proceeding to search and send files");
-                        db.Requests.Remove(req);
-                        db.SaveChanges();
+                        //window1.updateStatus("Connection request recieved. Proceeding to search and send files");
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }

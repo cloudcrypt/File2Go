@@ -30,9 +30,8 @@ namespace F2GWeb.Controllers
             {
                 ViewData["Files"] = _db.Files
                 .Include(f => f.response)
-                .ThenInclude(r => r.request)
                 .ThenInclude(r => r.client)
-                .Where(f => f.response.request.User.email == user.email)
+                .Where(f => f.response.User.email == user.email)
                 .ToList();
                 return View();
             }
@@ -51,19 +50,17 @@ namespace F2GWeb.Controllers
         {
             File fle = _db.Files
                 .Include(f => f.response)
-                .ThenInclude(r => r.request)
                 .ThenInclude(r => r.client)
                 .ThenInclude(c => c.User)
                 .FirstOrDefault(f => f.ID == file);
             byte[] bytes = fle.contents;
-            EmailService.Send(fle, fle.response.request.client.User.email);
+            EmailService.Send(fle, fle.response.client.User.email);
             ViewData["EmailSent"] = true;
             User user = await _auth.getUserAsync();
             ViewData["Files"] = _db.Files
                 .Include(f => f.response)
-                .ThenInclude(r => r.request)
                 .ThenInclude(r => r.client)
-                .Where(f => f.response.request.User.email == user.email)
+                .Where(f => f.response.User.email == user.email)
                 .ToList();
             return View("Index");
         }
