@@ -4,10 +4,10 @@ namespace F2G.ViewModels
 {
     public class HomeViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "Email")]
+        //public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

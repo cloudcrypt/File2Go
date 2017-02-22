@@ -21,9 +21,16 @@ namespace F2GWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            User user = await _auth.getUserAsync();
+            if (user != null)
+            {
+                ViewData["User"] = user;
+                ViewData["Clients"] = _db.Clients.Where(c => c.User == user).ToList();
+                return View("UserIndex");
+            }
+            return View("GuestIndex");
         }
 
 

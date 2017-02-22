@@ -1,0 +1,48 @@
+﻿@using F2G.Models;
+@model F2G.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    User user = (User) ViewData["User"];
+    List<Client> clients = (List<Client>)ViewData["Clients"];
+}
+
+<h1>Welcome back, @user.fname!</h1>
+
+<form asp-controller="Home" asp-action="Index" method="post">
+    <div class="form-group">
+        <label asp-for="filename" class="control-label"></label>
+        <div>
+            <input asp-for="filename" class="form-control" />
+            <span asp-validation-for="filename" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <button type="submit" class="btn btn-success btn-lg">Get File</button>
+        </div>
+    </div>
+</form>
+
+<h3>Active Clients:</h3>
+<table style="width:auto" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>IP Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Client c in clients)
+        {
+            <tr>
+                <td><span class="glyphicon glyphicon-home"></span>@c.name</td>
+                <td><span class="glyphicon glyphicon-globe"></span>@c.ip</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
