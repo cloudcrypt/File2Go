@@ -8,8 +8,9 @@ namespace F2GWeb.Services
 {
     public interface IAuthService
     {
-        User user { get; set; }
+        //User user { get; set; }
         Tuple<bool, string> signIn(User user);
         void signOut();
+        Task<User> getUserAsync(); 
     }
 }

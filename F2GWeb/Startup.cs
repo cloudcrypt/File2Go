@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using F2GWeb.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace F2GWeb
 {
@@ -35,7 +36,9 @@ namespace F2GWeb
 
             services.AddDbContext<F2GContext>(options => options.UseSqlServer(F2GContext.connStr));
 
-            services.AddSingleton<IAuthService, AuthService>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +61,7 @@ namespace F2GWeb
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
-                AuthenticationScheme = "MyCookieMiddlewareInstance",
+                AuthenticationScheme = "CookieMiddlewareInstance",
                 LoginPath = new PathString("/Account/Login/"),
                 AccessDeniedPath = new PathString("/Account/Login/"),
                 AutomaticAuthenticate = true,

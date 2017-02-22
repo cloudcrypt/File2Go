@@ -2,16 +2,16 @@
 @using F2G.Models
 
 @inject IAuthService auth
-
+@{ User user = await auth.getUserAsync(); }
 @*@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager*@
 
-@if (auth.user != null)
+@if (user != null)
 {
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @auth.user.fname!</a>
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @user.fname!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
