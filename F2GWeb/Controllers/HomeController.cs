@@ -35,15 +35,19 @@ namespace F2GWeb.Controllers
 
 
         [HttpPost]
-        public IActionResult Index(HomeViewModel model)
+        public async Task<IActionResult> Process(HomeViewModel model)
         {
+            User user = await _auth.getUserAsync();
             if (ModelState.IsValid)
             {
-                //_db.Requests.Add(new Request(model));
-                //_db.SaveChanges();
-                return Content("Requests sent");
+                foreach (Client c in _db.Clients.Where(c => c.User == user).ToList())
+                {
+                    _db.Requests.Add(new Request() { fileName = model.filename, client = c, User = user });
+                }
+                _db.SaveChanges();
+                return View();
             }
-            return View(model);
+            return View("Index", model);
         }
 
         public IActionResult Error()
