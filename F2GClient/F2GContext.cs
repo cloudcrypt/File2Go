@@ -22,8 +22,8 @@ namespace F2GClient
                                         TrustServerCertificate=False;
                                         Connection Timeout = 30;";
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<File> Files { get; set; }
+        //public DbSet<User> Users { get; set; }
+        //public DbSet<File> Files { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,8 +32,7 @@ namespace F2GClient
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasKey(u => u.email);
+           // modelBuilder.Entity<User>().HasKey(u => u.email);
         }
     }
 }
