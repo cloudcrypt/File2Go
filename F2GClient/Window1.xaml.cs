@@ -33,7 +33,7 @@ namespace F2GClient
 
 
             System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
-            //icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
+            icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
             icon.Visible = true;
             icon.DoubleClick += new EventHandler(icon_click);
             icon.ContextMenu = new System.Windows.Forms.ContextMenu();
@@ -60,6 +60,12 @@ namespace F2GClient
             Name.Content = user.fname + "  " +  user.lname;
             Email.Content = user.email;
         }
+
+        internal void displayConnection()
+        {
+            Status.Content = "Connection request recieved, Searching and sending files"; 
+        }
+
         private void startListening()
         {
             var bc = new BrushConverter();
@@ -67,7 +73,7 @@ namespace F2GClient
             ConnectionStatusLabel.Content = "Connected";
             try
             {
-                F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString());
+                F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString(), this);
                 listen.FileFound += Listen_FileFound;
                 listen.CheckQueue();
             }
