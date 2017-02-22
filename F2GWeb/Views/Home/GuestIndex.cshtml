@@ -3,13 +3,29 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <h1>Welcome to File2Go!</h1>
 
-    <h3>Get your files</h3>
-    <h3>Lose your files</h3>
-    <h3>Procure your files</h3>
-    <a style="margin-top: 15px" asp-controller="Account" asp-action="Register" role="button" class="btn btn-success btn-lg">Register new Account</a>
-    <br />
-    <a style="margin-top: 15px" asp-controller="Account" asp-action="Login" role="button" class="btn btn-primary btn-lg">Login</a>
+<table cellspacing="10" cellpadding="10"><tr>
+          <td>
+              <h3>Get your files</h3>
+              <h3>Lose your files</h3>
+              <h3>Procure your files</h3>
+
+              <a style="margin-top: 15px" asp-controller="Account" asp-action="Register" role="button" class="btn btn-success btn-lg">Register new Account</a>
+              <br />
+              <a style="margin-top: 15px" asp-controller="Account" asp-action="Login" role="button" class="btn btn-primary btn-lg">Login</a>
+              <br />
+
+              @*<img src="~/images/F2GIMG.png" class="to-center" width="200" height="200" />*@
+          </td>
+          <td>
+              <img src="~/images/F2GIMG.png" class="to-center" width="200" height="200" />
+          </td>
     
+</tr></table>
+
+
+
+
 
