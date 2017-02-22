@@ -136,10 +136,10 @@ namespace F2GClient
 
                 try
                 {
-                    Status.Content = "Something Went Wrong adjusting DataBase";
-                    removeClient();
-                    removeClient();
-                    identifyClient(user);
+                    db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                    db.Clients.Add(mycomputer);
+                    db.SaveChanges();
+                    Status.Content = "Sucessfully connected to DataBase";
                     //db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                     //db.Clients.Add(mycomputer);
                     //db.SaveChanges();
@@ -147,10 +147,10 @@ namespace F2GClient
                 }
                 catch (Exception e)
                 {
-                    db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                    db.Clients.Add(mycomputer);
-                    db.SaveChanges();
-                    Status.Content = "Sucessfully connected to DataBase";
+                    Status.Content = "Something Went Wrong adjusting DataBase";
+                    removeClient();
+                    removeClient();
+                    identifyClient(user);
                 }
             }
         }
