@@ -49,6 +49,8 @@ namespace F2GClient {
                     if (req != null) {
                         fileFound = true;
                         window1.updateStatus("File requested from this client. Procceeding to search and send files.");
+                        db.Requests.Remove(req);
+                        db.SaveChanges();
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }
