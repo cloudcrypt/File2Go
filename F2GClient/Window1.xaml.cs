@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace F2GClient
 {
     /// <summary>
@@ -19,11 +20,41 @@ namespace F2GClient
     /// </summary>
     public partial class Window1 : Window
     {
+        bool actualClose = false;
+
         public Window1()
         {
+
             InitializeComponent();
             DeviceName.Content = System.Net.Dns.GetHostName();
             IPAddress.Content = getMacAddress();
+
+
+            System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
+            icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
+            icon.Visible = true;
+            icon.DoubleClick += new EventHandler(icon_click);
+
+           
+        }
+
+        private void icon_click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (actualClose == false)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+            else
+            {
+                // Do nothing
+
+            }
         }
 
         private string getMacAddress()
@@ -37,6 +68,7 @@ namespace F2GClient
         {
             LoginWindow win2 = new LoginWindow();
             win2.Show();
+            actualClose = true;
             this.Close();
         }
     }

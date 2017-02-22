@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:F2GClient"
         mc:Ignorable="d"
         Title="Login File2Go" Height="350" Width="350" MinHeight="350" MaxHeight="350" MinWidth="350" MaxWidth="350">
-    
+
     <Grid Background="#FFABE2E8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,14 +27,39 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <Image x:Name="F2GIMG_png" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Source="F2GIMG.png" Stretch="Fill"/>
         <TextBlock x:Name="EmailTxt" FontSize="20" Grid.ColumnSpan="1" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="4" Grid.RowSpan="1" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
         <TextBox x:Name="Emailblock" FontSize="20" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="PasswordTxt" FontSize="20" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="5" Grid.RowSpan="1" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top"/>
         <PasswordBox x:Name="Passwordblock" FontSize="20" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="1" VerticalAlignment="Top" PasswordChar="*"/>
-        <Button x:Name="LoginBtn" Grid.ColumnSpan="2" Content="Login" Grid.Column="2"  Grid.Row="6" VerticalAlignment="Center" Height="36" Grid.RowSpan="2" Click="LoginAttempt"/>
+        <Button x:Name="LoginBtn" Grid.ColumnSpan="2" Content="Login" Grid.Column="2"  Grid.Row="6" VerticalAlignment="Center" Height="36" Click="LoginAttempt" Margin="0,4,0,0"/>
         <Label x:Name="InvalidLbl" Content="**Invalid email or password**" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="Red" Visibility="Hidden"/>
+
+        <Label x:Name="FileLbl" Grid.ColumnSpan="2" Content="File" Height="60" Margin="2,2,30,0" Grid.RowSpan="2" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.Column="1">
+
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-21.801"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="TwoLbl" Content="2" Grid.Column="2" HorizontalAlignment="Center" Margin="35,26,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="94" Width="79" Grid.RowSpan="3" FontSize="52"/>
+        <Label x:Name="Golbl" Content="Go" Grid.Column="3" HorizontalAlignment="Right" Margin="0,4,36,0" Grid.Row="1" VerticalAlignment="Top" Height="66" Grid.RowSpan="2" Width="89" FontSize="45" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="19.983"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="dhana" Content="Don't have an account?" Grid.Column="3" HorizontalAlignment="Left" Margin="32,0,0,0" Grid.Row="7" VerticalAlignment="Bottom" Height="31" Width="139" Grid.ColumnSpan="3" VerticalContentAlignment="Bottom" Background="{x:Null}" Foreground="#FFA20F0F" MouseDoubleClick="no_account" />
 
     </Grid>
 </Window>

@@ -29,7 +29,8 @@ namespace F2GClient
         private void LoginAttempt(object sender, RoutedEventArgs e)
         {
             openMain();
-           /* if (Emailblock.Text == "Hello")
+           /*string input = Emailblock.Text.Trim();
+           if (input == "Hello")
             {
                 checkPassword();
 
@@ -43,7 +44,8 @@ namespace F2GClient
 
         private void checkPassword()
         {
-           /*if (Passwordblock.Password == "World")
+            String input = Passwordblock.Password.Trim();
+           /*if (input == "World")
             {
                 Console.Write("Login Success");
                 openMain();
@@ -61,6 +63,11 @@ namespace F2GClient
             win1.Show();
             this.Close();
 
+
+        }
+
+        private void no_account(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }
