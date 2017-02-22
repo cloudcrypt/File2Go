@@ -15,24 +15,20 @@ namespace F2GClient {
         public event EventHandler FileFound;
 
         F2GDBListner (string ip) {
+            fileToBeFound = "";
             ipAddr = ip;
             bw = new BackgroundWorker();
             bw.WorkerSupportsCancellation = true;
         }
 
         public void CheckQueue() {
-            if (!bw.IsBusy) {
-                bw.DoWork += bw_DoWork;
-                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-                bw.RunWorkerAsync();
-            } else {
-                bw.DoWork += bw_Sleep;
-                bw.RunWorkerAsync();
+            while (fileToBeFound == "") {
+                if (!bw.IsBusy) {
+                    bw.DoWork += bw_DoWork;
+                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                    bw.RunWorkerAsync();
+                }
             }
-        }
-
-        private void bw_Sleep(object sender, DoWorkEventArgs e) {
-            Thread.Sleep(100);
         }
 
         private void bw_DoWork(object sender, DoWorkEventArgs e) {
