@@ -13,6 +13,9 @@ namespace F2GClient {
         volatile bool fileFound = false;
         private string ipAddr;
         private BackgroundWorker bw;
+        private Window1 window1;
+
+
         public event EventHandler<FileFoundEventArgs> FileFound;
 
 
@@ -22,6 +25,15 @@ namespace F2GClient {
             bw.WorkerSupportsCancellation = true;
 
         }
+
+        public F2GDBListner(Window1 window1, string ip)
+        {
+            this.window1 = window1;
+            ipAddr = ip;
+            bw = new BackgroundWorker();
+            bw.WorkerSupportsCancellation = true;
+        }
+
         public async void CheckQueue() {
             while (!fileFound) {
                 var t = await Task.Run(() => checkDB());
@@ -36,6 +48,7 @@ namespace F2GClient {
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
+                        window1.updateStatus("File requested from this client. Procceeding to search and send files.");
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }

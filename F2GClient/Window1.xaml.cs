@@ -33,7 +33,7 @@ namespace F2GClient
 
 
             System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
-            //icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
+            icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
             icon.Visible = true;
             icon.DoubleClick += new EventHandler(icon_click);
             icon.ContextMenu = new System.Windows.Forms.ContextMenu();
@@ -60,6 +60,12 @@ namespace F2GClient
             Name.Content = user.fname + "  " +  user.lname;
             Email.Content = user.email;
         }
+
+        internal void updateStatus(string v)
+        {
+            Status.Content = v; 
+        }
+
         private void startListening()
         {
             var bc = new BrushConverter();
@@ -67,7 +73,7 @@ namespace F2GClient
             ConnectionStatusLabel.Content = "Connected";
             try
             {
-                F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString());
+                F2GDBListner listen = new F2GDBListner(this, IPAddress.Content.ToString());
                 listen.FileFound += Listen_FileFound;
                 listen.CheckQueue();
             }
@@ -124,12 +130,13 @@ namespace F2GClient
                     db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                     db.Clients.Add(mycomputer);
                     db.SaveChanges();
+                    Status.Content = "Sucessfully connected to DataBase"; 
                 }
                 catch (Exception e)
                 {
-                    //Status.Content = "Something Went Wrong adjusting DataBase";
-                    //removeClient();
-                    //identifyClient(user);
+                    Status.Content = "Something Went Wrong adjusting DataBase";
+                    removeClient();
+                    identifyClient(user);
                 }
             }
         }
@@ -185,12 +192,5 @@ namespace F2GClient
             this.Close();
         }
 
-        private void attemptReconnect(object sender, MouseButtonEventArgs e)
-        {
-            if (label.Content == "Not Connected".ToString())
-            {
-                startListening();
-            }
-        }
     }
 }
