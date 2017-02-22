@@ -33,7 +33,10 @@
         <TextBox x:Name="Emailblock" FontSize="20" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="PasswordTxt" FontSize="20" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left"  Grid.Row="5" Grid.RowSpan="1" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top"/>
         <PasswordBox x:Name="Passwordblock" FontSize="20" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="1" VerticalAlignment="Top" PasswordChar="*" KeyDown="enterEverything"/>
-        <Button x:Name="LoginBtn" Grid.ColumnSpan="2" Content="Login" Grid.Column="2"  Grid.Row="6" VerticalAlignment="Center" Height="31" Click="LoginAttempt" Margin="0,23,0,26" Grid.RowSpan="2"/>
+        
+        <Button x:Name="LoginBtn" Grid.ColumnSpan="2" Content="Login" Grid.Column="2"  Grid.Row="6" VerticalAlignment="Center" Height="31" Click="LoginAttempt" Grid.RowSpan="2"/>
+        
+        
         <Label x:Name="InvalidLbl" Content="**Invalid email or password**" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="Red" Visibility="Hidden"/>
 
         <Label x:Name="FileLbl" Grid.ColumnSpan="2" Content="File" Height="60" Margin="2,2,30,0" Grid.RowSpan="2" VerticalAlignment="Top" FontSize="40" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.Column="1">

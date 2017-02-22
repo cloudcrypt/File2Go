@@ -28,8 +28,7 @@ namespace F2GClient
         public Window1(User user)
         {
             InitializeComponent();
-            DeviceName.Content = System.Net.Dns.GetHostName();
-            IPAddress.Content = getMacAddress();
+            
 
 
             System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
@@ -45,11 +44,33 @@ namespace F2GClient
             identifyClient(user);
 
             startListening();
+
+            fillLabels();
         }
 
+        private void fillLabels()
+        {
+            DeviceName.Content = System.Net.Dns.GetHostName();
+            IPAddress.Content = getMacAddress();
+            Name.Content = user.fname + "  " +  user.lname;
+            Email.Content = user.email;
+        }
         private void startListening()
         {
-            
+            var bc = new BrushConverter();
+            ConnectionStatusLabel.Background =(Brush)bc.ConvertFrom("#FF89F084");
+            ConnectionStatusLabel.Content = "Connected";
+            try
+            {
+                
+
+            }
+            catch (Exception e)
+            {
+                var bc2 = new BrushConverter();
+                ConnectionStatusLabel.Background = (Brush)bc2.ConvertFrom("#FFF5EBEB");
+                ConnectionStatusLabel.Content = "Not Connected";
+            }
         }
 
         private void Item_Click(object sender, EventArgs e)
@@ -67,9 +88,19 @@ namespace F2GClient
 
                 mycomputer = new Client() { name = hostname, ip = Ip,  User = user};
 
-                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                db.Clients.Add(mycomputer);
-                db.SaveChanges();
+
+                try
+                {
+                    db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                    db.Clients.Add(mycomputer);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Status.Content = "Something Went Wrong adjusting DataBase";
+                    removeClient();
+                    identifyClient(user);
+                }
             }
         }
         private void icon_click(object sender, EventArgs e)
@@ -94,14 +125,21 @@ namespace F2GClient
 
         private void removeClient()
         {
-            using (F2GContext db = new F2GContext())
+            try
             {
-                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                db.Clients.Remove(mycomputer);
-                db.SaveChanges();
+                using (F2GContext db = new F2GContext())
+                {
+                    db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                    db.Clients.Remove(mycomputer);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+                // Do nothing for Database exception // 
             }
         }
-
         private string getMacAddress()
         {
             string hostName = System.Net.Dns.GetHostName();
@@ -115,6 +153,14 @@ namespace F2GClient
             win2.Show();
             actualClose = true;
             this.Close();
+        }
+
+        private void attemptReconnect(object sender, MouseButtonEventArgs e)
+        {
+            if (label.Content == "Not Connected".ToString())
+            {
+                startListening();
+            }
         }
     }
 }
