@@ -26,13 +26,17 @@ namespace F2GWeb.Controllers
         public async Task<IActionResult> Index()
         {
             User user = await _auth.getUserAsync();
-            ViewData["Files"] = _db.Files
+            if (user != null)
+            {
+                ViewData["Files"] = _db.Files
                 .Include(f => f.response)
                 .ThenInclude(r => r.request)
                 .ThenInclude(r => r.client)
                 .Where(f => f.response.request.User.email == user.email)
                 .ToList();
-            return View();
+                return View();
+            }
+            return Redirect("/Account/Login");
         }
 
         [HttpGet]
@@ -43,7 +47,7 @@ namespace F2GWeb.Controllers
             return File(bytes, "application/octet-stream", fle.name);
         }
 
-        public void Email(int file)
+        public async Task<IActionResult> Email(int file)
         {
             File fle = _db.Files
                 .Include(f => f.response)
@@ -53,11 +57,15 @@ namespace F2GWeb.Controllers
                 .FirstOrDefault(f => f.ID == file);
             byte[] bytes = fle.contents;
             EmailService.Send(fle, fle.response.request.client.User.email);
-        }
-
-        private void byteArrayToFile(byte[] bytes)
-        {
-
+            ViewData["EmailSent"] = true;
+            User user = await _auth.getUserAsync();
+            ViewData["Files"] = _db.Files
+                .Include(f => f.response)
+                .ThenInclude(r => r.request)
+                .ThenInclude(r => r.client)
+                .Where(f => f.response.request.User.email == user.email)
+                .ToList();
+            return View("Index");
         }
     }
 }

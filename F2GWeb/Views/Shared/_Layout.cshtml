@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - F2GWeb</title>
+    <title>@ViewData["Title"] - File2Go</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -27,10 +27,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">F2GWeb</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">File2Go</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Results" asp-action="Index">Files</a></li>
                     <li><a asp-area="" asp-controller="About" asp-action="Index">About</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -41,7 +42,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - F2GWeb</p>
+            <p>&copy; 2017 - File2Go - Daniel Dastoor, Janet Leahy, Andrey Ranenko, Austin Wattling</p>
         </footer>
     </div>
 

@@ -37,7 +37,7 @@ namespace F2GWeb.Controllers
             {
                 _db.Users.Add(new User(model));
                 _db.SaveChanges();
-                //return Content("Registered!");
+                _auth.signIn(new User(model));
                 return Redirect("/");
             }
             return View(model);
