@@ -22,14 +22,14 @@ namespace F2GClient {
             bw.WorkerSupportsCancellation = true;
 
         }
-        public void CheckQueue() {
+        public async void CheckQueue() {
             while (!fileFound) {
-                var t = Task.Run(() => checkDB());
-                t.Wait();
+                var t = await Task.Run(() => checkDB());
+                //t.Wait();
             }
         }
 
-        private void checkDB() {
+        private async Task<bool> checkDB() {
             try {
                 using (F2GContext db = new F2GContext()) {
                     //Request req = db.Requests.Include(r => r.User).Include(r => r.client).FirstOrDefault(r => r.client.ip == ipAddr);
@@ -42,6 +42,7 @@ namespace F2GClient {
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
             }
+            return fileFound;
         }
 
       
