@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using F2GWeb.Services;
 using F2G.Models;
 using F2G.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,7 +26,12 @@ namespace F2GWeb.Controllers
         public async Task<IActionResult> Index()
         {
             User user = await _auth.getUserAsync();
-            ViewData["Files"] = _db.Files.Where(f => f.response.request.User.email == user.email).ToList();
+            ViewData["Files"] = _db.Files
+                .Include(f => f.response)
+                .ThenInclude(r => r.request)
+                .ThenInclude(r => r.client)
+                .Where(f => f.response.request.User.email == user.email)
+                .ToList();
             return View();
         }
 
