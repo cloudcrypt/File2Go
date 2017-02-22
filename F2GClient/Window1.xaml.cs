@@ -95,7 +95,7 @@ namespace F2GClient
                     db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                     rsp = new Response() { success = true, request = rsq };
                     db.Responses.Add(rsp);
-                    db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
+                    db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, uploaded =  DateTime.Now, response = rsp });
                     db.SaveChanges();
                     return;
                 }
