@@ -19,6 +19,14 @@ namespace F2GWeb.Models
         public List<File> files { get; set; }
         public List<Client> clients { get; set; } 
 
+        public User() { }
+
+        public User(string email, string password)
+        {
+            this.email = email;
+            hash = getHash(password);
+        }
+
         public User(RegisterViewModel vm)
         {
             email = vm.Email;
