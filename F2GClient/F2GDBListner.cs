@@ -43,13 +43,11 @@ namespace F2GClient {
         private async Task<bool> checkDB() {
             try {
                 using (F2GContext db = new F2GContext()) {
-                    //Request req = db.Requests.Include(r => r.User).Include(r => r.client).FirstOrDefault(r => r.client.ip == ipAddr);
-                    Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
+                    Request req = db.Requests.Include(r => r.User).Include(r => r.client).FirstOrDefault(r => r.client.ip == ipAddr);
+                    //Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        window1.updateStatus("Connection request recieved. Proceeding to search and send files");
-                        db.Requests.Remove(req);
-                        db.SaveChanges();
+                        //window1.updateStatus("Connection request recieved. Proceeding to search and send files");
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }

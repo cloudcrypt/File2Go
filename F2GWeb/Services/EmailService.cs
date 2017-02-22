@@ -8,7 +8,7 @@ namespace F2GWeb.Services {
         public static void Send(F2G.Models.File file, string receiverEmail) {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress("File2Go", "file2go@outlook.com"));
-            emailMessage.To.Add(new MailboxAddress("", file.response.request.client.User.email));
+            emailMessage.To.Add(new MailboxAddress("", file.response.client.User.email));
             emailMessage.Subject = "Your File From File2Go!";
             var body = new TextPart("plain") { Text = "Here is your file, " + file.name + ", from File2Go!" };
             var attachment = new MimePart()

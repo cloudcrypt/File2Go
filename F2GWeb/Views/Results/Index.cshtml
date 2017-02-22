@@ -7,12 +7,18 @@
 
 @if (files.Count > 0)
 {
+    @if (ViewData["EmailSent"] != null)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Email sent!</strong> An email containing your file has been sent to your default email address.
+        </div>
+    }
     <h3>Requested Files:</h3>
     <table style="width:auto" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Source</th>
-                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -21,7 +27,7 @@
             @foreach (File f in files)
             {
                 <tr>
-                    <td><span>@f.response.request.client.name</span></td>
+                    <td><span>@f.response.client.name</span></td>
                     <td><a asp-action="Download" asp-route-file=@f.ID>Download <span class="glyphicon glyphicon-download-alt"></span></a></td>
                     <td><a asp-action="Email" asp-route-file=@f.ID>Email <span class="glyphicon glyphicon-envelope"></span></a></td>
                 </tr>
@@ -34,13 +40,4 @@ else
     <h3>No files were found.</h3>
     <br />
     <a style="margin-top: 15px" asp-controller="Home" asp-action="Index" role="button" class="btn btn-primary btn-lg">Return</a>
-}
-
-@section Scripts {
-    <script type="text/javascript">
-        window.onbeforeunload = function () {
-            // peform ajax here
-            return "deleting all files!";
-        }
-    </script>
 }

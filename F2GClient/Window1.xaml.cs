@@ -91,20 +91,27 @@ namespace F2GClient
             byte[] file = File2Bytes.ConvertFileToBytes(path);
             using (F2GContext db = new F2GContext())
             {
+                Request rsq = e.RequestData;
                 Response rsp;
+                db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                User user = rsq.User;
+                Client client = rsq.client;
+                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                db.Entry(client).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                 if (file != null)
                 {
-                    Request rsq = e.RequestData;
-                    db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                    rsp = new Response() { success = true, request = rsq };
+                    
+                    rsp = new Response() { success = true, User = user, client = client };
                     db.Responses.Add(rsp);
                     db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
+                    db.Requests.Remove(rsq);
                     db.SaveChanges();
                     startListening();
                     return;
                 }
-                rsp = new Response() { success = false, request = e.RequestData };
+                rsp = new Response() { success = false, User = user, client = client };
                 db.Responses.Add(rsp);
+                db.Requests.Remove(rsq);
                 db.SaveChanges();
                 startListening();
                 return;
@@ -130,6 +137,7 @@ namespace F2GClient
                 try
                 {
                     Status.Content = "Something Went Wrong adjusting DataBase";
+                    removeClient();
                     removeClient();
                     identifyClient(user);
                     //db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;

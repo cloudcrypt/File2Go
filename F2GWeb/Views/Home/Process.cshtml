@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Processing";
-    //int neededResponses = (int)ViewData["neededResponses"];
+    int neededResponses = (int)ViewData["neededResponses"];
 }
 
 <h1>Processing...</h1>
@@ -22,10 +22,13 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var needed = 1;
+        var needed = @neededResponses;
 
         window.onload = function () {
             $("#progress").modal('show');
+            setTimeout(function () {
+                window.location.href = "/Results";      
+            }, 50000)
             poll();
         }
 
@@ -37,7 +40,7 @@
                 timeout: 2000,
                 success: function (response) {
                     if (response == needed) {
-                        window.location("/Results");
+                        window.location.href = "/Results";
                     } else {
                         setTimeout(poll, 500);
                     }

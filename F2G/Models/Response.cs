@@ -10,6 +10,8 @@ namespace F2G.Models
     {
         public int ID { get; set; }
         public bool success { get; set; }
-        public Request request { get; set; }
+        //public Request request { get; set; }
+        public Client client { get; set; }
+        public User User { get; set; }
     }
 }
