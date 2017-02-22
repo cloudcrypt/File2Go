@@ -19,7 +19,7 @@ namespace F2GClient {
         public async Task<string> CheckQueue(string dbQuery) {
             using (F2GContext db = new F2GContext())
             {
-                Request req = db.Requests.FirstOrDefault(r => r.client.ip == this ip address);
+               // Request req = db.Requests.FirstOrDefault(r => r.client.ip == this ip address);
             }
             
             string file = "";

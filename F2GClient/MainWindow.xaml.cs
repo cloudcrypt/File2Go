@@ -49,15 +49,6 @@ namespace F2GClient
             }
         }
 
-        private void identifyClient(User user)
-        {
-            using (F2GContext db = new F2GContext())
-            {
-                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                db.Clients.Add(new Client() { name = "BLAH-PC", ip = "192.168.2.1", User = user });
-                db.SaveChanges();
-            }
-        }
 
         private static string getHash(string pswd)
         {

@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <Label x:Name="ConnectionStatusLabel" Content="Not Connected" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="140" FontSize="15" Foreground="Red" Background="#FFF5EBEB"/>
+            <Label x:Name="ConnectionStatusLabel" Content="Not Connected" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="140" FontSize="15" Foreground="Black" Background="#FFF5EBEB"/>
             <Label x:Name="StatusLbl" Content="Status:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1"  Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" Height="30" Background="White" Width="60"  />
 
         </Grid>
@@ -92,8 +92,8 @@
             <Label x:Name="DeviceNameLbl" Content="Device Name:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="171" FontSize="25" Grid.Column="1" Grid.Row="3"/>
             <Label x:Name="IpLbl" Content="IP address:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="171" FontSize="25" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"/>
 
-            <Label x:Name="Name" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
-            <Label x:Name="Email" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+            <Label x:Name="Name" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="91,0,0,0"/>
+            <Label x:Name="Email" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="86,38,0,0" Grid.RowSpan="2"/>
             <Label x:Name="DeviceName" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
             <Label x:Name="IPAddress" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="374" FontSize="25" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Margin="138,0,0,0" Grid.RowSpan="2"/>
 
