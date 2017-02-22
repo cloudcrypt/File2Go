@@ -93,10 +93,15 @@ namespace F2GClient
             {
                 Request rsq = e.RequestData;
                 Response rsp;
+                db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                User user = rsq.User;
+                Client client = rsq.client;
+                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                db.Entry(client).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                 if (file != null)
                 {
-                    db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-                    rsp = new Response() { success = true, User = rsq.User, client = rsq.client };
+                    
+                    rsp = new Response() { success = true, User = user, client = client };
                     db.Responses.Add(rsp);
                     db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
                     db.Requests.Remove(rsq);
@@ -104,7 +109,7 @@ namespace F2GClient
                     startListening();
                     return;
                 }
-                rsp = new Response() { success = false, User = rsq.User, client = rsq.client };
+                rsp = new Response() { success = false, User = user, client = client };
                 db.Responses.Add(rsp);
                 db.Requests.Remove(rsq);
                 db.SaveChanges();
