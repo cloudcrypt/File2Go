@@ -27,6 +27,12 @@ namespace F2G.Models
             hash = getHash(password);
         }
 
+        public User(Tuple<string,string> tpl)
+        {
+            this.email = tpl.Item1;
+            this.hash = tpl.Item2;
+        }
+
         public User(RegisterViewModel vm)
         {
             email = vm.Email;
@@ -44,6 +50,7 @@ namespace F2G.Models
 
         private static string getHash(string pswd)
         {
+            //return BCrypt.Net.BCrypt.HashPassword(pswd);
             MD5 md5 = MD5.Create();
             byte[] inputBytes = Encoding.ASCII.GetBytes(pswd);
             byte[] hash = md5.ComputeHash(inputBytes);
