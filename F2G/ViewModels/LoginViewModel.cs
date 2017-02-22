@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace F2GWeb.ViewModels
+namespace F2G.ViewModels
 {
     public class LoginViewModel
     {

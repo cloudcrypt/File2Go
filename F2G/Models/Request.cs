@@ -1,12 +1,10 @@
-﻿using F2GWeb.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F2GWeb.Models
+namespace F2G.Models
 {
     public class Request
     {

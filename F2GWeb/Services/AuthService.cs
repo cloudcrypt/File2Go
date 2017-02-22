@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using F2GWeb.Models;
+using F2G.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace F2GWeb.Services
 {
@@ -10,10 +11,12 @@ namespace F2GWeb.Services
     {
         public User user { get; set; }
         private readonly F2GContext _db;
+        private readonly IHttpContextAccessor _ctxAccessor;
 
         public AuthService(F2GContext db)
         {
             _db = db;
+            //_ctxAccessor = contextAccessor;
         }
 
         public Tuple<bool, string> signIn(User user)
@@ -23,6 +26,7 @@ namespace F2GWeb.Services
             if (dbUser.hash == user.hash)
             {
                 this.user = dbUser;
+                //_ctxAccessor.HttpContext.Authentication.S
                 return new Tuple<bool, string>(true, "Success");
             }
             return new Tuple<bool, string>(false, "Incorrect user name or password");

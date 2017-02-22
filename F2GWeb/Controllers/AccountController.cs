@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using F2GWeb.ViewModels;
 using F2GWeb.Services;
-using F2GWeb.Models;
+using F2G.Models;
+using F2G.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +35,7 @@ namespace F2GWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Users.Add(new Models.User(model));
+                _db.Users.Add(new User(model));
                 _db.SaveChanges();
                 return Content("Registered!");
             }
