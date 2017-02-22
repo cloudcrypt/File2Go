@@ -58,8 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FileToBytes.cs" />
+    <Compile Include="F2GDBListner.cs" />
+    <Compile Include="File2Bytes.cs" />
     <Compile Include="Search4File.cs" />
+    <Compile Include="Send2Email.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
