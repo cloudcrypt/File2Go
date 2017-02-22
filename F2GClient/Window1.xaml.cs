@@ -29,11 +29,8 @@ namespace F2GClient
         public Window1(User user)
         {
             InitializeComponent();
-            
-
-
             System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
-            //icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
+            icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
             icon.Visible = true;
             icon.DoubleClick += new EventHandler(icon_click);
             icon.ContextMenu = new System.Windows.Forms.ContextMenu();
@@ -60,6 +57,12 @@ namespace F2GClient
             Name.Content = user.fname + "  " +  user.lname;
             Email.Content = user.email;
         }
+
+        internal void displayConnection()
+        {
+            Status.Content = "Connection request recieved, Searching and sending files"; 
+        }
+
         private void startListening()
         {
             var bc = new BrushConverter();
@@ -67,7 +70,7 @@ namespace F2GClient
             ConnectionStatusLabel.Content = "Connected";
             try
             {
-                F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString());
+                F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString(), this);
                 listen.FileFound += Listen_FileFound;
                 listen.CheckQueue();
             }
@@ -92,7 +95,7 @@ namespace F2GClient
                     db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                     rsp = new Response() { success = true, request = rsq };
                     db.Responses.Add(rsp);
-                    db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
+                    db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, uploaded =  DateTime.Now, response = rsp });
                     db.SaveChanges();
                     return;
                 }
@@ -124,12 +127,13 @@ namespace F2GClient
                     db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
                     db.Clients.Add(mycomputer);
                     db.SaveChanges();
+                    Status.Content = "Successfully connected to database";
                 }
                 catch (Exception e)
                 {
-                    //Status.Content = "Something Went Wrong adjusting DataBase";
-                    //removeClient();
-                    //identifyClient(user);
+                    Status.Content = "Something Went Wrong adjusting DataBase";
+                    removeClient();
+                    identifyClient(user);
                 }
             }
         }

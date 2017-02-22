@@ -38,6 +38,12 @@ namespace F2GClient {
             return null;
         }
 
+        //public static void SendToServer(string filePath) {
+        //    using (F2GContext db = new F2GContext()) {
+        //        db.
+        //    }
+        //}
+
         public static bool ByteArrayToFile(string _FileName, byte[] _ByteArray) {
             try { // Open file for reading
                 System.IO.FileStream _FileStream =
