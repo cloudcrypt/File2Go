@@ -58,8 +58,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="dhana" Content="Don't have an account?" Grid.Column="3" HorizontalAlignment="Left" Margin="32,0,0,0" Grid.Row="7" VerticalAlignment="Bottom" Height="31" Width="139" Grid.ColumnSpan="3" VerticalContentAlignment="Bottom" Background="{x:Null}" Foreground="#FFA20F0F" MouseDoubleClick="no_account" />
+
+        <Label x:Name="dhana" Content="Don't have an account?" Grid.Column="3" HorizontalAlignment="Left" Margin="32,0,0,0" Grid.Row="7" VerticalAlignment="Bottom" Height="31" Width="139" Grid.ColumnSpan="3" VerticalContentAlignment="Bottom" Background="{x:Null}" Foreground="#FFA20F0F" MouseDoubleClick="no_account" MouseEnter="no_account_Under" MouseLeave="no_account_over" />
 
     </Grid>
 </Window>

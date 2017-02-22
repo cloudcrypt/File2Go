@@ -12,6 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using F2G.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+
+
+
 
 namespace F2GClient
 {
@@ -28,34 +34,18 @@ namespace F2GClient
 
         private void LoginAttempt(object sender, RoutedEventArgs e)
         {
-            openMain();
-           /*string input = Emailblock.Text.Trim();
-           if (input == "Hello")
-            {
-                checkPassword();
 
-            }
-            else
-            {
-                InvalidLbl.Visibility = Visibility.Visible; 
+            User userAttempt = new F2G.Models.User(Emailblock.Text.Trim(), Passwordblock.Password.Trim());
 
-            }*/
+
+
         }
 
         private void checkPassword()
         {
-            String input = Passwordblock.Password.Trim();
-           /*if (input == "World")
-            {
-                Console.Write("Login Success");
-                openMain();
-            }
-            else
-            {
-                InvalidLbl.Visibility = Visibility.Visible;
 
-            }*/
         }
+
 
         private void openMain()
         {
@@ -68,7 +58,19 @@ namespace F2GClient
 
         private void no_account(object sender, MouseButtonEventArgs e)
         {
+            System.Diagnostics.Process.Start("http://file2go.azurewebsites.net/Account/Register");
+        }
 
+        private void no_account_Under(object sender, MouseEventArgs e)
+        {
+            var bc = new BrushConverter();
+            dhana.Foreground = (Brush)bc.ConvertFrom("#FF201C64"); 
+        }
+
+        private void no_account_over(object sender, MouseEventArgs e)
+        {
+            var bc = new BrushConverter();
+            dhana.Foreground = (Brush)bc.ConvertFrom("#FFA20F0F");
         }
     }
 }

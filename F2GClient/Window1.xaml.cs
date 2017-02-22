@@ -24,7 +24,6 @@ namespace F2GClient
 
         public Window1()
         {
-            F2G.File yes = new F2G.File();
             InitializeComponent();
             DeviceName.Content = System.Net.Dns.GetHostName();
             IPAddress.Content = getMacAddress();
@@ -35,7 +34,7 @@ namespace F2GClient
             icon.Visible = true;
             icon.DoubleClick += new EventHandler(icon_click);
 
-           
+
         }
 
         private void icon_click(object sender, EventArgs e)
