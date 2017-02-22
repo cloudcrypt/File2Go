@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using F2G;
 
 namespace F2GClient
 {
@@ -24,7 +24,7 @@ namespace F2GClient
 
         public Window1()
         {
-
+            F2G.File yes = new F2G.File();
             InitializeComponent();
             DeviceName.Content = System.Net.Dns.GetHostName();
             IPAddress.Content = getMacAddress();
