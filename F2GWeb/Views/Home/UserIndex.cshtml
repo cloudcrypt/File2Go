@@ -33,7 +33,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Client c in clients)
+        @foreach (Client c in clients.Where(c => c.User == user).ToList())
         {
             <tr>
                 <td><i class="fa fa-desktop fa-2x"></i>  <span style="font-size: 14pt; font-weight: bold">@c.name</span></td>
