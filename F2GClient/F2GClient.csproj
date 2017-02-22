@@ -106,6 +106,12 @@
   <ItemGroup>
     <Resource Include="F2GIMG.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\F2G\F2G.csproj">
+      <Project>{e02d54c6-7424-467f-af01-d4b6bf092dee}</Project>
+      <Name>F2G</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
