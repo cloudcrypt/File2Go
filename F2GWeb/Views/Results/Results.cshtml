@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using F2G.Models;
+@model F2G.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Results";
+    List<File> files = (List<File>)ViewData["Files"];
+}
+<h2>@ViewData["Title"]</h2>
+
+<h3>Requested Files:</h3>
+<table style="width:auto" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Source</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (File f in files)
+        {
+            <tr>
+                <td><span>@f.user</span></td>
+                <td><a asp-action="view" asp-route-file=f.contents>View <span class="glyphicon glyphicon-file"></span></a></td>
+                <td><span><i class="glyphicon glyphicon-download-alt">Download</i></span></td>
+                <td><a asp-action="download" asp-route-file=f.contents >Download <span class="glyphicon glyphicon-download-alt"></span></a></td>
+                <td><span class="glyphicon glyphicon-envelope"></span>Email to Default</td>
+                <td><a asp-action="download" asp-route-file=f.contents>Email to Default <span class="glyphicon glyphicon-envelope"></span></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
