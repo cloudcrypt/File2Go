@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using F2G.Models;
 using System.ComponentModel;
 using System.Threading;
+using Microsoft.EntityFrameworkCore;
 
 namespace F2GClient {
     public class F2GDBListner {
         volatile bool fileFound = false;
         private string ipAddr;
         private BackgroundWorker bw;
-        public event EventHandler FileFound;
+        public event EventHandler<FileFoundEventArgs> FileFound;
 
 
         public F2GDBListner (string ip) {
@@ -31,10 +32,11 @@ namespace F2GClient {
         private void checkDB() {
             try {
                 using (F2GContext db = new F2GContext()) {
+                    //Request req = db.Requests.Include(r => r.User).Include(r => r.client).FirstOrDefault(r => r.client.ip == ipAddr);
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        OnFileFound(new FileFoundEventArgs { RequestData = req });
+                        FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }
             } catch (Exception e) {
@@ -47,13 +49,13 @@ namespace F2GClient {
             public Request RequestData { get; set; }
         }
 
-        public delegate void FileFoundEventHandler(FileFoundEventArgs e);
+        //public delegate void FileFoundEventHandler(object sender, FileFoundEventArgs e);
 
-        protected virtual void OnFileFound(EventArgs e) {
-            EventHandler handler = FileFound;
-            if (handler != null) {
-                handler(this, e);
-            }
-        }
+        //protected virtual void OnFileFound(EventArgs e) {
+        //    EventHandler handler = FileFound;
+        //    if (handler != null) {
+        //        handler(this, e);
+        //    }
+        //}
     }
 }

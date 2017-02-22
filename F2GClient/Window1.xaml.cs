@@ -68,6 +68,7 @@ namespace F2GClient
             try
             {
                 F2GDBListner listen = new F2GDBListner(IPAddress.Content.ToString());
+                listen.FileFound += Listen_FileFound;
                 listen.CheckQueue();
             }
             catch (Exception e)
@@ -75,6 +76,30 @@ namespace F2GClient
                 var bc2 = new BrushConverter();
                 ConnectionStatusLabel.Background = (Brush)bc2.ConvertFrom("#FFF5EBEB");
                 ConnectionStatusLabel.Content = "Not Connected";
+            }
+        }
+
+        private void Listen_FileFound(object sender, F2GDBListner.FileFoundEventArgs e)
+        {
+            string path = Search4File.Search(e.RequestData.fileName).Split('\n')[0];
+            byte[] file = File2Bytes.ConvertFileToBytes(path);
+            using (F2GContext db = new F2GContext())
+            {
+                Response rsp;
+                if (file != null)
+                {
+                    Request rsq = e.RequestData;
+                    db.Entry(rsq).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
+                    rsp = new Response() { success = true, request = rsq };
+                    db.Responses.Add(rsp);
+                    db.Files.Add(new File() { name = e.RequestData.fileName, contents = file, response = rsp });
+                    db.SaveChanges();
+                    return;
+                }
+                rsp = new Response() { success = false, request = e.RequestData };
+                db.Responses.Add(rsp);
+                db.SaveChanges();
+                return;
             }
         }
 
