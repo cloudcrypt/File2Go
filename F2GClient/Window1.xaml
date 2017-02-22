@@ -37,8 +37,7 @@
         </Grid>
         <Label x:Name="Status" Grid.ColumnSpan="2" Content="" Grid.Column="1" Height="30" Grid.Row="7" Width="392" Background="White"/>
         <Rectangle Fill="#FF0101E6" HorizontalAlignment="Left" Height="135" Grid.Row="6" Stroke="Black" VerticalAlignment="Top" Width="592" Grid.ColumnSpan="3"/>
-        <Button x:Name="LogoutBtn" Content="Logout" Grid.Column="1"  Grid.Row="4" VerticalAlignment="Bottom" FontSize="20" Click="logout" VerticalContentAlignment="Top"/>
-        <Label x:Name="GetLogLbl" Content="Get Log File" Grid.Column="2" HorizontalAlignment="right" Grid.Row="5" VerticalAlignment="Top" Width="90" Foreground="#FF1CBD6C" Height="30"/>
+        <Button x:Name="LogoutBtn" Content="Logout" Grid.Column="1"  Grid.Row="3" VerticalAlignment="Bottom" FontSize="20" Click="logout" VerticalContentAlignment="Center" Height="51" Grid.RowSpan="2" Margin="0,0,0,10"/>
 
 
         <Grid Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="204" Margin="0,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="592">
