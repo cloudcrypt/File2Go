@@ -38,5 +38,26 @@ namespace F2GWeb.Controllers
             }
             return View(model);
         }
+
+
+        // GET: /<controller>/
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // GET: /<controller>/
+        [HttpPost]
+        public async Task<IActionResult>Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Users.Add(new Models.User(model));
+                _db.SaveChanges();
+                return Content("Logged in!");
+            }
+            return View(model);
+        }
     }
 }
