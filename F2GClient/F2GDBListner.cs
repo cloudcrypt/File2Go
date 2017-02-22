@@ -7,15 +7,12 @@ using F2G.Models;
 using System.ComponentModel;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
-using F2GClient;
 
 namespace F2GClient {
     public class F2GDBListner {
         volatile bool fileFound = false;
         private string ipAddr;
         private BackgroundWorker bw;
-        private Window1 window1;
-
         public event EventHandler<FileFoundEventArgs> FileFound;
 
 
@@ -25,15 +22,6 @@ namespace F2GClient {
             bw.WorkerSupportsCancellation = true;
 
         }
-
-        public F2GDBListner(string ip, Window1 window1) : this(ip)
-        {
-            this.window1 = window1;
-            ipAddr = ip;
-            bw = new BackgroundWorker();
-            bw.WorkerSupportsCancellation = true;
-        }
-
         public async void CheckQueue() {
             while (!fileFound) {
                 var t = await Task.Run(() => checkDB());
@@ -48,7 +36,8 @@ namespace F2GClient {
                     Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
                         fileFound = true;
-                        window1.displayConnection();
+                        db.Requests.Remove(req);
+                        db.SaveChanges();
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }
@@ -61,7 +50,6 @@ namespace F2GClient {
       
         public class FileFoundEventArgs : EventArgs {
             public Request RequestData { get; set; }
-            
         }
 
         //public delegate void FileFoundEventHandler(object sender, FileFoundEventArgs e);
