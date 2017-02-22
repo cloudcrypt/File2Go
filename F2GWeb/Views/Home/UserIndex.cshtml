@@ -27,7 +27,7 @@
 <h3>Active Clients:</h3>
 <table style="width:auto" class="table table-bordered table-hover">
     <thead>
-        <tr>
+        <tr style="font-size: 14pt">
             <th>Client</th>
             <th>IP Address</th>
         </tr>
@@ -36,8 +36,8 @@
         @foreach (Client c in clients)
         {
             <tr>
-                <td><span><i class="material-icons">devices</i></span>@c.name</td>
-                <td><span class="glyphicon glyphicon-globe"></span>@c.ip</td>
+                <td><i class="fa fa-desktop fa-2x"></i>  <span style="font-size: 14pt; font-weight: bold">@c.name</span></td>
+                <td><i class="fa fa-globe fa-2x"></i>  <span style="font-size: 14pt; font-weight: bold">@c.ip</span></td>
             </tr>
         }
     </tbody>
