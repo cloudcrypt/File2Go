@@ -29,9 +29,6 @@ namespace F2GClient
         public Window1(User user)
         {
             InitializeComponent();
-            
-
-
             System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
             icon.Icon = new System.Drawing.Icon("F2GIMG.ico");
             icon.Visible = true;

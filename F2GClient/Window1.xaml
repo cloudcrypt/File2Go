@@ -92,7 +92,7 @@
             <Label x:Name="IpLbl" Content="IP address:" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="171" FontSize="25" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"/>
 
             <Label x:Name="Name" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="91,0,0,0"/>
-            <Label x:Name="Email" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="86,38,0,0" Grid.RowSpan="2"/>
+            <Label x:Name="Email" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="91,38,0,0" Grid.RowSpan="2"/>
             <Label x:Name="DeviceName" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="341" FontSize="25" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
             <Label x:Name="IPAddress" Content="" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="374" FontSize="25" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Margin="138,0,0,0" Grid.RowSpan="2"/>
         </Grid>
