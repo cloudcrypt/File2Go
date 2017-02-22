@@ -5,13 +5,13 @@
       "type": "project",
       "framework": ".NETStandard,Version=v1.3",
       "compile": {
-        "bin/Debug/F2G.dll": {}
+        "bin/Release/F2G.dll": {}
       },
       "runtime": {
-        "bin/Debug/F2G.dll": {}
+        "bin/Release/F2G.dll": {}
       },
       "contentFiles": {
-        "bin/Debug/F2G.pdb": {
+        "bin/Release/F2G.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
