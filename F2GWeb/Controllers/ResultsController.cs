@@ -35,19 +35,24 @@ namespace F2GWeb.Controllers
             return View();
         }
 
-        public IActionResult View(int fileID)
+        [HttpGet]
+        public FileContentResult Download(int file)
         {
-            return Content("Hello from view");
+            File fle = _db.Files.FirstOrDefault(f => f.ID == file);
+            byte[] bytes = fle.contents;
+            return File(bytes, "application/octet-stream", fle.name);
         }
 
-        public IActionResult Download(int fileID)
+        public void Email(int file)
         {
-            return Content("Hello from download");
-        }
-
-        public IActionResult Email(int fileID)
-        {
-            return Content("Hello from email");
+            File fle = _db.Files
+                .Include(f => f.response)
+                .ThenInclude(r => r.request)
+                .ThenInclude(r => r.client)
+                .ThenInclude(c => c.User)
+                .FirstOrDefault(f => f.ID == file);
+            byte[] bytes = fle.contents;
+            EmailService.Send(fle, fle.response.request.client.User.email);
         }
 
         private void byteArrayToFile(byte[] bytes)
