@@ -33,6 +33,8 @@ namespace F2GWeb
             services.AddMvc();
 
             services.AddDbContext<F2GContext>(options => options.UseSqlServer(F2GContext.connStr));
+
+            services.AddSingleton<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
