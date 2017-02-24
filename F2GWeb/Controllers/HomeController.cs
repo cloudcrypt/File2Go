@@ -27,7 +27,7 @@ namespace F2GWeb.Controllers
             if (user != null)
             {
                 ViewData["User"] = user;
-                ViewData["Clients"] = _db.Clients.Where(c => c.User == user).ToList();
+                ViewData["Clients"] = _db.Clients.Where(c => c.active == true && c.User == user).ToList();
                 return View("UserIndex");
             }
             return View("GuestIndex");
@@ -52,7 +52,7 @@ namespace F2GWeb.Controllers
                 }
                 _db.SaveChanges();
                 int i = 0;
-                foreach (Client c in _db.Clients.Where(c => c.User == user).ToList())
+                foreach (Client c in _db.Clients.Where(c => c.active == true && c.User == user).ToList())
                 {
                     _db.Requests.Add(new Request() { fileName = model.filename, client = c, User = user });
                     i++;

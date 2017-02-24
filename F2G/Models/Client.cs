@@ -10,6 +10,7 @@ namespace F2G.Models
     {
         public string name { get; set; }
         public string ip { get; set; }
+        public bool active { get; set; }
         public User User { get; set; }
     }
 }

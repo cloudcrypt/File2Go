@@ -31,6 +31,10 @@ namespace F2GClient {
                                     dir.Contains("\\System Volume Information") ||
                                     dir.Contains("\\Recovery") ||
                                     dir.Contains("\\Documents and Settings") ||
+                                    dir.Contains("\\Users\\Default") ||
+                                    dir.Contains("\\Users\\All Users") ||
+                                    dir.Contains("\\Users\\Default.migrated") ||
+                                    dir.Contains("\\Users\\Public") ||
                                     dir.Contains("\\AppData"));
                     if (ignore) {
                         searchDirectory(dir); // search sub directories

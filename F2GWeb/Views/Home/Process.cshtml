@@ -39,7 +39,7 @@
                 cache: false,
                 timeout: 2000,
                 success: function (response) {
-                    if (response == needed) {
+                    if (response >= needed) {
                         window.location.href = "/Results";
                     } else {
                         setTimeout(poll, 500);

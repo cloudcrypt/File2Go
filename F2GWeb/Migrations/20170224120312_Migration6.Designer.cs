@@ -8,9 +8,10 @@ using F2GWeb.Services;
 namespace F2GWeb.Migrations
 {
     [DbContext(typeof(F2GContext))]
-    partial class F2GContextModelSnapshot : ModelSnapshot
+    [Migration("20170224120312_Migration6")]
+    partial class Migration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -44,8 +45,6 @@ namespace F2GWeb.Migrations
                     b.Property<byte[]>("contents");
 
                     b.Property<string>("name");
-
-                    b.Property<string>("path");
 
                     b.Property<int?>("responseID");
 
@@ -88,8 +87,6 @@ namespace F2GWeb.Migrations
                     b.Property<string>("Useremail");
 
                     b.Property<string>("clientip");
-
-                    b.Property<string>("fileName");
 
                     b.Property<bool>("success");
 

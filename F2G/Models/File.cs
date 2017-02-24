@@ -10,6 +10,7 @@ namespace F2G.Models
     {
         public int ID { get; set; }
         public string name { get; set; }
+        public string path { get; set; }
         public byte[] contents { get; set; }
         public DateTime uploaded { get; set; }
         public Response response { get; set; }

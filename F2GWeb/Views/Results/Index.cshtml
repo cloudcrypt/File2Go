@@ -1,6 +1,6 @@
 ﻿@using F2G.Models;
 @{
-    ViewData["Title"] = "Results";
+    ViewData["Title"] = $"Results ({((Response)ViewData["Response"]).fileName})";
     List<File> files = (List<File>)ViewData["Files"];
 }
 <h2>@ViewData["Title"]</h2>
@@ -19,6 +19,7 @@
         <thead>
             <tr>
                 <th>Source</th>
+                <th>Path</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -27,7 +28,8 @@
             @foreach (File f in files)
             {
                 <tr>
-                    <td><span>@f.response.client.name</span></td>
+                    <td><i class="fa fa-desktop"></i>  <span>@f.response.client.name</span></td>
+                    <td>@f.path</td>
                     <td><a asp-action="Download" asp-route-file=@f.ID>Download <span class="glyphicon glyphicon-download-alt"></span></a></td>
                     <td><a asp-action="Email" asp-route-file=@f.ID>Email <span class="glyphicon glyphicon-envelope"></span></a></td>
                 </tr>

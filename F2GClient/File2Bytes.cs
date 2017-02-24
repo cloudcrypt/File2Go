@@ -33,6 +33,7 @@ namespace F2GClient {
                     return System.IO.File.ReadAllBytes(filePath);
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
+                    throw;
                 }
             } 
             return null;

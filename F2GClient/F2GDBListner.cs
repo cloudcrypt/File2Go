@@ -35,14 +35,16 @@ namespace F2GClient {
 
         public async void CheckQueue() {
             while (!fileFound) {
+                Console.WriteLine("in CheckQueue");
                 var t = await Task.Run(() => checkDB());
                 //t.Wait();
             }
         }
 
         private async Task<bool> checkDB() {
-            try {
+            //try {
                 using (F2GContext db = new F2GContext()) {
+                    Console.WriteLine("in checkDB");
                     Request req = db.Requests.Include(r => r.User).Include(r => r.client).FirstOrDefault(r => r.client.ip == ipAddr);
                     //Request req = db.Requests.FirstOrDefault(r => r.client.ip == ipAddr);
                     if (req != null) {
@@ -51,9 +53,9 @@ namespace F2GClient {
                         FileFound(this, new FileFoundEventArgs { RequestData = req });
                     }
                 }
-            } catch (Exception e) {
-                Console.WriteLine(e.Message);
-            }
+            //} catch (Exception e) {
+            //    Console.WriteLine(e.Message);
+            //}
             return fileFound;
         }
 

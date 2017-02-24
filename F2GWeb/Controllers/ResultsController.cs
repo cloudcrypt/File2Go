@@ -28,6 +28,7 @@ namespace F2GWeb.Controllers
             User user = await _auth.getUserAsync();
             if (user != null)
             {
+                ViewData["Response"] = _db.Responses.FirstOrDefault(r => r.User.email == user.email);
                 ViewData["Files"] = _db.Files
                 .Include(f => f.response)
                 .ThenInclude(r => r.client)

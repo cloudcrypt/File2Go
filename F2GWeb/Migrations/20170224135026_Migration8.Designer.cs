@@ -8,9 +8,10 @@ using F2GWeb.Services;
 namespace F2GWeb.Migrations
 {
     [DbContext(typeof(F2GContext))]
-    partial class F2GContextModelSnapshot : ModelSnapshot
+    [Migration("20170224135026_Migration8")]
+    partial class Migration8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
