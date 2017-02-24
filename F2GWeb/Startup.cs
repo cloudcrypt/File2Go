@@ -34,7 +34,7 @@ namespace F2GWeb
             // Add framework services.
             services.AddMvc();
 
-            services.AddDbContext<F2GContext>(options => options.UseSqlServer(F2GContext.connStr));
+            services.AddDbContext<F2GContext>(options => options.UseSqlServer(getConnString()));
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -74,6 +74,11 @@ namespace F2GWeb
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private string getConnString()
+        {
+            return F2GContext.getConnStr("f2gadmin", Configuration["SQLSERVERPASS"]);
         }
     }
 }
