@@ -97,7 +97,7 @@ namespace F2GClient
         private void Listen_FileFound(object sender, F2GDBListner.FileFoundEventArgs e)
         {
             Console.WriteLine("in FileFound");
-            string[] paths = Search4File.Search(e.RequestData.fileName).Split('\n');
+            string[] paths = Search4File.Search(e.RequestData.fileName).Split('\n').Where(p => !string.IsNullOrWhiteSpace(p)).ToArray();
             List<Tuple<string, byte[]>> files = new List<Tuple<string, byte[]>>();
             foreach (string path in paths)
             {
